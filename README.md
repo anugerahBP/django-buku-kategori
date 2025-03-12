@@ -1,9 +1,3 @@
-Tentu! Berikut adalah langkah-langkah yang dapat Anda tambahkan ke file `README.md` untuk menjelaskan cara menjalankan proyek Django yang sudah jadi. Langkah-langkah ini akan membantu siapa pun yang meng-clone repository Anda untuk menginstal dan menjalankan proyek dengan mudah.
-
----
-
-### **Contoh Isi `README.md`**
-
 ```markdown
 # Proyek Django: Manajemen Buku dan Kategori
 

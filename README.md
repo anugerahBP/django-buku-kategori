@@ -93,10 +93,53 @@ Buka browser dan akses `http://localhost:8000` untuk melihat aplikasi.
 
 ## Struktur Proyek
 
-- `buku_project/`: Konfigurasi utama proyek Django.
-- `buku_app/`: Aplikasi utama untuk manajemen buku dan kategori.
-- `templates/`: Template HTML untuk antarmuka pengguna.
-- `README.md`: Dokumentasi proyek.
+buku_project/  # Direktori utama proyek Django
+│── buku_app/  # Aplikasi utama untuk manajemen buku dan kategori
+│   │── migrations/  # Folder untuk menyimpan migrasi database
+│   │   │── __init__.py
+│   │   │── 0001_initial.py  # File migrasi pertama
+│   │
+│   │── templates/buku_app/  # Template HTML untuk tampilan antarmuka pengguna
+│   │   │── daftar_kategori.html  # Halaman daftar kategori
+│   │   │── edit_buku.html  # Halaman edit buku
+│   │   │── edit_kategori.html  # Halaman edit kategori
+│   │   │── home.html  # Halaman utama
+│   │   │── tambah_buku.html  # Form tambah buku
+│   │   │── tambah_kategori.html  # Form tambah kategori
+│   │
+│   │── __init__.py  # Penanda direktori sebagai package Python
+│   │── admin.py  # Konfigurasi admin Django untuk model Buku dan Kategori
+│   │── apps.py  # Konfigurasi aplikasi buku_app
+│   │── forms.py  # Form Django untuk input Buku dan Kategori
+│   │── models.py  # Model database untuk Buku dan Kategori
+│   │── serializers.py  # Serializers untuk API (REST/GraphQL)
+│   │── tests.py  # Unit test untuk aplikasi buku_app
+│   │── urls.py  # Routing URL untuk buku_app
+│   │── views.py  # View function/class untuk mengelola Buku dan Kategori
+│
+│── buku_project/  # Konfigurasi utama proyek Django
+│   │── __init__.py  # Penanda direktori sebagai package Python
+│   │── asgi.py  # Konfigurasi ASGI untuk deployment async
+│   │── settings.py  # Konfigurasi proyek Django (database, aplikasi, dll.)
+│   │── urls.py  # Routing URL utama proyek
+│   │── wsgi.py  # Konfigurasi WSGI untuk deployment server
+│
+│── django-buku-kategori/  # (Kemungkinan folder untuk static/media atau assets)
+│
+│── img/  # (Opsional) Folder untuk menyimpan gambar terkait proyek
+│
+│── manage.py  # File utama untuk menjalankan perintah Django (migrasi, runserver, dll.)
+│── venv/  # Virtual environment untuk proyek Django
+
+Penjelasan Tambahan:
+
+    buku_project/ → Berisi konfigurasi utama Django.
+    buku_app/ → Aplikasi khusus untuk pengelolaan buku dan kategori.
+    migrations/ → Berisi file migrasi database Django.
+    templates/buku_app/ → Template HTML untuk antarmuka pengguna.
+    serializers.py → Digunakan jika menggunakan Django REST Framework atau GraphQL.
+
+Struktur ini sudah sesuai dengan best practice Django.
 
 ---
 

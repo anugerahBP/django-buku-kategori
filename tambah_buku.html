@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Buku</title>
+</head>
+<body>
+    <h1>Tambah Buku</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div style="color: red;">
+                <strong>Error:</strong>
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <li>{{ field }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {{ form.as_p }}
+        <button type="submit">Simpan</button>
+    </form>
+    <a href="{% url 'home' %}">Kembali ke Daftar Buku</a>
+</body>
+</html>

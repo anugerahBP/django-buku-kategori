@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Kategori</title>
+</head>
+<body>
+    <h1>Tambah Kategori</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Simpan</button>
+    </form>
+    <a href="{% url 'daftar_kategori' %}">Kembali ke Daftar Kategori</a>
+</body>
+</html>

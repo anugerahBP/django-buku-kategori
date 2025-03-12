@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Buku</title>
+</head>
+<body>
+    <h1>Daftar Buku</h1>
+    <a href="{% url 'tambah_buku' %}">Tambah Buku</a>
+    <a href="{% url 'daftar_kategori' %}">Lihat Kategori</a>
+<!-- Tambahkan form pencarian di atas tabel -->
+<form method="get" action="{% url 'home' %}">
+    <input type="text" name="q" placeholder="Cari judul buku..." value="{{ query }}">
+    <button type="submit">Cari</button>
+</form>
+<!-- Tambahkan dropdown untuk sorting di atas tabel -->
+<form method="get" action="{% url 'home' %}">
+    <input type="text" name="q" placeholder="Cari judul buku..." value="{{ query }}">
+    <select name="sort">
+        <option value="id" {% if sort_by == 'id' %}selected{% endif %}>Urutkan berdasarkan ID</option>
+        <option value="judul" {% if sort_by == 'judul' %}selected{% endif %}>Urutkan berdasarkan Judul</option>
+        <option value="penulis" {% if sort_by == 'penulis' %}selected{% endif %}>Urutkan berdasarkan Penulis</option>
+    </select>
+    <button type="submit">Terapkan</button>
+</form>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Judul</th>
+                <th>Kategori</th>
+                <th>Penulis</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for buku in buku_list %}
+            <tr>
+                <td>{{ buku.judul }}</td>
+                <td>{{ buku.kategori.nama }}</td>
+                <td>{{ buku.penulis }}</td>
+                <td>
+                    <a href="{% url 'edit_buku' buku.id %}">Edit</a>
+                    <form action="{% url 'hapus_buku' buku.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; pertama</a>
+                <a href="?page={{ page_obj.previous_page_number }}">sebelumnya</a>
+            {% endif %}
+
+            <span class="current">
+                Halaman {{ page_obj.number }} dari {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">selanjutnya</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">terakhir &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+</body>
+</html>
